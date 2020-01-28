@@ -1,0 +1,79 @@
+{% extends "gds_base.html" %}
+
+{% load static crispy_forms_tags %}
+
+{% block content %}
+
+
+
+<div class="govuk-width-container">
+
+{% include "containers/breadcrumbs.html" with current="Sign Up" %}
+
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+
+<!-- Required to split page  -->
+
+    <div class="govuk-grid-row">
+
+<!-- Left side -->
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">Sign Up</h1>
+
+        <h2 class="govuk-heading-m">Why not sign up for an account today? It's easy, free and takes only a few minutes.</h2>
+        <span class="govuk-caption-m">Already have an account? Please <a href="{% url 'login' %}">sign in</a> instead.</span>
+        <br>
+        <span class="govuk-error-message">This form is for Demo purposes. It does NOT function fully! It's still nice though eh?</span>
+        <br>
+        {% if error %}
+        <div class="govuk-form-group govuk-form-group--error">
+          <div class="govuk-error-summary">
+            <span class="govuk-error-message">
+              
+            {{ error }}
+            </span>
+            
+          </div>
+          <form class="govuk-fieldset"method="post">
+            {% csrf_token %}
+            <fieldset class="govuk-fieldset">
+            <div class="">
+                {{ form|crispy }}
+            </div>
+            <br>
+                <button data-prevent-double-click="true" class="govuk-button" data-module="govuk-button">
+                Submit
+                </button>
+            </fieldset>
+          </form>
+        </div>
+          
+        {% else %}
+        <form class="govuk-fieldset" method="POST" action="{% url 'signup' %}">
+          {% csrf_token %}
+          <fieldset class="govuk-fieldset">
+            <div class="govuk-form-group">
+              {% crispy form %}
+            </div>
+            <button data-prevent-double-click="true" class="govuk-button" data-module="govuk-button">
+            Submit
+            </button>
+          </fieldset>
+        </form>
+        {% endif %}
+      </div>
+
+<!-- Right Side -->
+      <div class="govuk-grid-column-one-third">
+
+    <!-- The Related items component is not part of GOV.UK Frontend but will be styled if used in the Prototype Kit -->
+
+      {% include "containers/right_sidebar.html" %}
+
+      </div>
+    </div>
+  </main>
+
+</div>
+
+{% endblock %}

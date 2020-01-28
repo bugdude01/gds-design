@@ -1,0 +1,85 @@
+{% load crispy_forms_field %}
+{% load gdsbuild_filters %}
+
+{% if field.is_hidden %}
+    {{ field }}
+{% else %}
+    {% if field|is_checkbox %}
+        <div class="govuk-form-group{% if 'form-horizontal' in form_class %} row{% endif %}">
+        {% if label_class %}
+            <div class="govuk-label govuk-checkboxes__label">
+        {% endif %}
+
+    {% endif %}
+    <{% if tag %}{{ tag }}{% else %}div{% endif %} id="div_{{ field.auto_id }}" class="{% if not field|is_checkbox %}govuk-form-group{% if 'form-horizontal' in form_class %} row{% endif %}{% else %}form-check{% endif %}{% if wrapper_class %} {{ wrapper_class }}{% endif %}{% if field.css_classes %} {{ field.css_classes }}{% endif %}">
+
+        {% if field.label and not field|is_checkbox and form_show_labels %}
+            <label for="{{ field.id_for_label }}" class="govuk-label">
+                {{ field.label|safe }}{% if field.field.required %}{% endif %}
+            </label>
+        {% endif %}
+
+        {% if field|is_checkboxselectmultiple %}
+            {% include 'GDS/layout/checkboxselectmultiple.html' %}
+        {% endif %}
+       
+        {% if field|is_radioselect %}
+            {% include 'GDS/layout/radioselect.html' %}
+        {% endif %}
+
+        {% if field|is_datefield %}
+            {% include 'GDS/layout/gds_datepicker.html' %}
+        {% endif %}
+
+        {% if field|is_email %}
+            {% crispy_field field "class" "govuk-input" %}
+        {% endif %}
+
+        {% if field|is_password %}
+            {% if error %}
+                {% crispy_field field "class" "govuk-input govuk-input--error" %}
+            {% endif %}
+            
+
+            {% crispy_field field "class" "govuk-input" %}
+        {% endif %}
+
+        {% if field|is_number %}
+            {% include 'GDS/layout/numberinput.html' %}
+        {% endif %}
+
+
+        {% if not field|is_checkboxselectmultiple and not field|is_radioselect and not field|is_number and not field|is_datefield and not field|is_password and not field|is_email %}
+            {% if field|is_checkbox and form_show_labels %}
+                <label for="{{ field.id_for_label }}" class="govuk-label">
+                    {% crispy_field field "class" "form-check-input" %}
+                    {{ field.label|safe }}{% if field.field.required %}{% endif %}
+                </label>
+                {% include 'GDS/layout/help_text_and_errors.html' %}
+            {% else %}
+                <div class="{{ field_class }}">
+                    {% if field|is_textinput %}
+                        {% crispy_field field "class" "govuk-input" %}
+
+                    {% elif field|is_textarea %}
+                        {% crispy_field field "class" "govuk-textarea" %}
+
+                    {% elif field|is_select %}
+                        {% crispy_field field "class" "govuk-select" %}
+
+                    {% else %}
+                        {% crispy_field field %}
+
+                    {% endif %}
+                    {% include 'GDS/layout/help_text_and_errors.html' %}
+                </div>
+            {% endif %}
+        {% endif %}
+    </{% if tag %}{{ tag }}{% else %}div{% endif %}>
+    {% if field|is_checkbox %}
+        {% if label_class %}
+            </div>
+        {% endif %}
+        </div>
+    {% endif %}
+{% endif %}

@@ -1,0 +1,36 @@
+{% load crispy_forms_filters %}
+{% load l10n %}
+
+<div class="{% if inline_class %}govuk-checkboxes{% endif %}{% if field_class %} {{ field_class }}{% endif %}"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>
+    {% include 'GDS/layout/field_errors_block.html' %}
+
+    <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+            <h1 class="govuk-fieldset__heading"></h1>
+        </legend>
+        <div class="govuk-checkboxes">
+
+            {% for choice in field.field.choices %}
+
+            {% if not inline_class %}
+
+            <div class="govuk-checkboxes__item">
+
+            {% endif %}
+                <input type="checkbox" class="govuk-checkboxes__input"{% if choice.0 in field.value or choice.0|stringformat:"s" in field.value or choice.0|stringformat:"s" == field.value|default_if_none:""|stringformat:"s" %} checked="checked"{% endif %} name="{{ field.html_name }}" id="id_{{ field.html_name }}_{{ forloop.counter }}" value="{{ choice.0|unlocalize }}" {{ field.field.widget.attrs|flatatt }}>
+
+                <label id="id_{{ field.id_for_label }}_{{ forloop.counter }}" class="govuk-label govuk-checkboxes__label" for="id_{{ field.html_name }}_{{ forloop.counter }}">
+                </label>
+
+                {{ choice.1|unlocalize }}
+
+                {% if not inline_class %}
+            </div>
+            {% endif %}
+
+            {% endfor %}
+
+        </div>
+    </fieldset>
+    {% include 'GDS/layout/help_text.html' %}
+</div>

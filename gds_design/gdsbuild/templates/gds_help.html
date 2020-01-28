@@ -1,0 +1,68 @@
+{% extends "gds_base.html" %}
+
+{% load static crispy_forms_tags %}
+
+{% block content %}
+
+
+
+<div class="govuk-width-container">
+  
+{% if request.user.is_authenticated %}
+  <h3 class="govuk-heading-m">You are logged in as {{ user }}</h3>
+{% endif %}
+
+{% include "containers/breadcrumbs.html" with current="Help" %}
+
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+
+<!-- Required to split page  -->
+
+    <div class="govuk-grid-row">
+
+<!-- Left side -->
+      <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Help</h1>
+        <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+          <div class="govuk-accordion__section ">
+            <div class="govuk-accordion__section-header">
+              <h2 class="govuk-accordion__section-heading">
+                <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                  Help with this site
+                </span>
+              </h2>
+            </div>
+            <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
+              <p class='govuk-body'>These pages have been built to primarily provide a simple tempate which can be used to create a UK Government compliant site, utilising GDS styling and layout principles. It is a very rough guide and can be inifinitely tweaked to suit your own development objectives.
+
+              Have FUN!!</p>
+            </div>
+          </div>
+          <div class="govuk-accordion__section ">
+            <div class="govuk-accordion__section-header">
+              <h2 class="govuk-accordion__section-heading">
+                <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                  Creating an account
+                </span>
+              </h2>
+            </div>
+            <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
+              <p class='govuk-body'>Some elements are hidden. In order to see everything this site contains you will need to <a href="{% url 'signup' %}"> Sign Up</a> to get the full benefit. If you already have an account, WHAT ARE YOU DOIUNG HERE? <a href="{% url 'login' %}">Login</a> and get on with it!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- Right Side -->
+      <div class="govuk-grid-column-one-third">
+
+      <!-- The Related items component is not part of GOV.UK Frontend but will be styled if used in the Prototype Kit -->
+
+      {% include "containers/right_sidebar.html" %}
+        
+      </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

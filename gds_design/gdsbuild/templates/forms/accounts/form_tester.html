@@ -1,0 +1,37 @@
+{% extends "gds_base.html" %}
+
+{% load static crispy_forms_tags %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+
+{% if request.user.is_authenticated %}
+  <h3 class="govuk-heading-m">You are logged in as {{ user }}</h3>
+{% endif %}
+
+{% include "containers/breadcrumbs.html" with current="Form Fields" %}
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">Form Field Test Page</h1>
+        <h2 class="govuk-heading-m">Here are samples of the more commonly used Form Fields.</h2>
+        <form class="govuk-fieldset" method="post">
+          {% csrf_token %}
+          {% crispy form %}
+        </form>
+        
+      </div>
+      <div class="govuk-grid-column-one-third">
+
+        <!-- The Related items component is not part of GOV.UK Frontend but will be styled if used in the Prototype Kit -->
+
+      {% include "containers/right_sidebar.html" %}
+
+      </div>
+      
+    </div>
+  </main>
+</div>
+
+{% endblock %}

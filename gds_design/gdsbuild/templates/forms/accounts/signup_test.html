@@ -1,0 +1,21 @@
+{% extends "gds_base.html" %}
+
+{% load static crispy_forms_tags %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+    <main class="govuk-main-wrapper " id="main-content" role="main">
+        <h1 class="govuk-heading-xl">Sign Up</h1>
+        <p class="govuk-body">Already have an account? Please <a href="">sign in</a> instead.</p>
+        <form class="govuk-fieldset"method="post">
+            {% csrf_token %}
+            <fieldset class="govuk-fieldset">
+              <div class="govuk-form-group">
+                {% crispy form %}
+              </div>
+            </fieldset>
+        </form>
+    </main>
+</div>
+{% endblock %}

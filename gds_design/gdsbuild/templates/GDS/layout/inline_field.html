@@ -1,0 +1,21 @@
+{% load crispy_forms_field %}
+
+{% if field.is_hidden %}
+    {{ field }}
+{% else %}
+    {% if field|is_checkbox %}
+        <div id="div_{{ field.auto_id }}" class="govuk-checkboxes{% if wrapper_class %} {{ wrapper_class }}{% endif %}">
+            <label for="{{ field.id_for_label }}" class="govuk-label govuk-checkboxes__label{% if field.field.required %} requiredField{% endif %}">
+                {% crispy_field field 'class' 'form-check-input' "class" "govuk-label govuk-checkboxes__label"%}
+                {{ field.label|safe }}
+            </label>
+        </div>
+    {% else %}
+        <div id="div_{{ field.auto_id }}" class="govuk-radios govuk-radios--inline{% if wrapper_class %} {{ wrapper_class }}{% endif %}">
+            <label for="{{ field.id_for_label }}" class="govuk-label{% if field.field.required %} requiredField{% endif %}">
+                {{ field.label|safe }}
+            </label>
+            {% crispy_field field 'placeholder' field.label "class" "govuk-label govuk-radios__label" %}
+        </div>
+    {% endif %}
+{% endif %}

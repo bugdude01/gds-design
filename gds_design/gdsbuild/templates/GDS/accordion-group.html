@@ -1,0 +1,12 @@
+<div class="govuk-accordion__section">
+    <div class="govuk-accordion__section-header">
+        <h4 class="govuk-heading-s">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#{{ div.data_parent }}" href="#{{ div.css_id }}">{{ div.name }}</a>
+        </h4>
+    </div>
+    <div id="{{ div.css_id }}" class="panel-collapse collapse{% if div.active %} in{% endif %}" >
+        <div class="govuk-accordion__section-content">
+            {{ fields|safe }}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+{% load crispy_forms_filters crispy_forms_field %}
+{% load l10n %}
+
+
+<div class="govuk-date-input">
+	<div class="govuk-date-input__item">
+		<div class="govuk-form-group">
+			{% crispy_field field "class" "govuk-select govuk-date-input__item selectdatewidget govuk-select" %}
+			{% include 'GDS/layout/help_text_and_errors.html' %}
+		</div>
+	</div>
+</div>
+

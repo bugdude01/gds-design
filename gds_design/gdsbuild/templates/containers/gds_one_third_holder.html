@@ -1,0 +1,28 @@
+{% block content %}
+
+<aside class="app-related-items" role="complementary">
+  <h2 class="govuk-heading-m" id="subsection-title">
+    Useful Template links
+  </h2>
+  <nav role="navigation" aria-labelledby="subsection-title">
+    <ul class="govuk-list govuk-!-font-size-16">
+      <li>
+        <a class="govuk-link" href="{% url 'form_tester' %}">
+          Template Form Fields
+        </a>
+      </li>
+      <li>
+        <a class="govuk-link" href="{% url 'signup' %}">
+          Template Signup Form
+        </a>
+      </li>
+      <li>
+        <a href="#" class="govuk-link govuk-!-font-weight-bold">
+          Template More <span class="govuk-visually-hidden">in Subsection</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>
+
+{% endblock %}

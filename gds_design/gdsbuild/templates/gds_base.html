@@ -1,0 +1,40 @@
+{% load static %}
+
+
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>GDS_Design Homepage</title>
+
+	<link rel="stylesheet" href="{% static "/stylesheets/css/govuk-frontend-3.3.0.min.css" %}">
+	<link rel="icon" type="image/png" href="{% static "img/govuk-favicon.ico" %}">
+
+	<!-- note that there's also blue.uni-form.css and dark.uni-form.css available if you want to try changing defaults up -->
+
+
+
+</head>
+
+<body class="govuk-template__body js-enabled">
+		<div id="govuk-main-wrapper">
+			{% include "gds_header.html" %}
+			
+			{% block content %}
+		
+			{% endblock %}
+
+			<div class="app-back-to-top" data-module="app-back-to-top">
+              <a class="govuk-link govuk-link--no-visited-state app-back-to-top__link" href="#top">
+                <svg role="presentation" focusable="false" class="app-back-to-top__icon" xmlns="http://www.w3.org/2000/svg" width="13" height="17" viewBox="0 0 13 17">
+                  <path fill="currentColor" d="M6.5 0L0 6.5 1.4 8l4-4v12.7h2V4l4.3 4L13 6.4z"></path>
+                </svg>Back to top
+              </a>
+            </div>
+		</div>
+        {% include "gds_footer.html" %}
+
+    <script src="{% static "/stylesheets/js/govuk-frontend-3.3.0.min.js" %}"></script>
+    <script>window.GOVUKFrontend.initAll()</script>
+	
+</body>
+</html>

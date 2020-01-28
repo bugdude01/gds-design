@@ -1,0 +1,54 @@
+{% extends "gds_base.html" %}
+
+{% load static crispy_forms_tags %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+    {% include "containers/breadcrumbs.html" with current="login" %}
+    <main class="govuk-main-wrapper " id="main-content">
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-one-half">
+        <h1 class="govuk-heading-xl">Log In</h1>
+        <span class="govuk-caption-m">Please enter your login details below.</span>
+        <br>
+        <span class="govuk-caption-m">Don't have an account? simply <a href="{% url 'signup' %}">Sign Up</a> and you will be off and running in no time</span>
+        <br>
+        {% if error %}
+      <div class="govuk-form-group govuk-form-group--error">
+      <span class="govuk-error-message">
+        
+      {{ error }}
+      </span>
+        <form class="govuk-fieldset"method="post">
+          {% csrf_token %}
+          <fieldset class="govuk-fieldset">
+          <div class="govuk-form-group">
+              {{ form|crispy }}
+          </div>
+          <br>
+              <button data-prevent-double-click="true" class="govuk-button" data-module="govuk-button">
+              Submit
+              </button>
+          </fieldset>
+        </form>
+      </div>
+        
+      {% else %}
+      <form class="govuk-fieldset"method="post">
+          {% csrf_token %}
+          <fieldset class="govuk-fieldset">
+              <div class="govuk-form-group">
+                  {{ form|crispy }}
+              </div>
+              <button data-prevent-double-click="true" class="govuk-button" data-module="govuk-button">
+              Submit
+              </button>
+          </fieldset>
+      </form>
+      {% endif %}
+    </div>
+</div>
+    </main>
+</div>
+{% endblock %}

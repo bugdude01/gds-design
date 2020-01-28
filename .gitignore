@@ -1,0 +1,38 @@
+# python
+*.py[co]
+*.egg*
+__pycache__/
+
+# IDEs / editors
+/.project
+/.pydevproject
+/.settings
+/.idea
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+auto-save-list
+tramp
+.\#*
+*.swp
+*.swo
+
+# OS
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+
+# misc
+*.db
+*.log
+*.bak
+.vagrant
+.ssh
+
+uploads/
+db.sqlite3
+db.png
+*.lock
